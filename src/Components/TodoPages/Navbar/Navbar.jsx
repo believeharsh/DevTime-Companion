@@ -67,7 +67,7 @@ const Navbar = () => {
             <div className="Navbar-btns-div">
              
               <button className="navbar-buttons">
-              <Link to="/" className="">Today</Link>
+              <Link to="/today" className="">Today</Link>
                 
               </button>
               <button className="navbar-buttons">

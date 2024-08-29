@@ -1,5 +1,6 @@
 import React from "react";
-const CommonBM = ({ BM }) => {
+const CommonBM = ({BM}) => {
+ 
   return (
     <>
       <div className="">

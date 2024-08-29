@@ -9,7 +9,10 @@ const AllBs = () => {
     <div className="left-0 right-0 bottom-0 top-0 overflow-auto">
       <div className="max-w-md mx-auto p-4">
         <div className="everything-card border-1 rounded-xl px-2 py-2">
-          <AddnewBM />
+        {/* <div className=" border-white border-b-[0.3px] pb-4">
+        <AddnewBM />
+        </div> */}
+   
 
           <Bmlist
             handleAddBM={handleAddBM}

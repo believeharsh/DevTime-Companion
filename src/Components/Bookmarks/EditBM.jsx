@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { useBM } from '../../Context/BookMark-Context/BMContext-Provider';
 import { FaPlus } from "react-icons/fa";
-import { useBM } from "../../Context/BookMark-Context/BMContext-Provider";
-import { v4 as uuidv4 } from "uuid";
 
-const AddnewBM = () => {
-  const {handleAddBM, BookMark } = useBM();
-  const [bookmarkText, setBookmarkText] = useState("");
-  const [bookmarkUrl, setBookmarkUrl] = useState("");
+const EditBM = ({ BM }) => {
+  const { handleEditBM } = useBM();
+  const [bookmarkText, setBookmarkText] = useState(BM.text || "");
+  const [bookmarkUrl, setBookmarkUrl] = useState(BM.url || "");
+
+  useEffect(() => {
+    // Set initial values when BM prop changes
+    setBookmarkText(BM.text || "");
+    setBookmarkUrl(BM.url || "");
+  }, [BM]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddBM(BookMark, {
-      id: uuidv4(),
+    handleEditBM(BM.id, {
+      id: BM.id, // Keep the original ID
       text: bookmarkText,
       url: bookmarkUrl,
     });
@@ -28,8 +33,8 @@ const AddnewBM = () => {
           <div className="w-1/4">
             <input
               type="text"
-              value={bookmarkText}
-              onChange={(e) => setBookmarkText(e.target.value)}
+              value={bookmarkText} // Use state value here
+              onChange={(e) => setBookmarkText(e.target.value)} // Update state
               placeholder="Name"
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white"
             />
@@ -39,8 +44,8 @@ const AddnewBM = () => {
           <div className="flex-1">
             <input
               type="url"
-              value={bookmarkUrl}
-              onChange={(e) => setBookmarkUrl(e.target.value)}
+              value={bookmarkUrl} // Use state value here
+              onChange={(e) => setBookmarkUrl(e.target.value)} // Update state
               placeholder="URL"
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white"
             />
@@ -61,4 +66,4 @@ const AddnewBM = () => {
   );
 };
 
-export default AddnewBM;
+export default EditBM;
