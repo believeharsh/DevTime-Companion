@@ -52,7 +52,7 @@ const AddnewBM = () => {
         <div className="flex-shrink-0" style={{ width: "10%" }}>
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 flex items-center justify-center text-2xl"
+            className="w-full px-4 py-2 bg-gray-500 text-white rounded-md shadow hover:bg-blue-600 flex items-center justify-center "
           >
             <FaPlus />
           </button>

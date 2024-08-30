@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import { MdDeleteOutline } from "react-icons/md";
-import { CiEdit } from "react-icons/ci";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useBM } from "../../Context/BookMark-Context/BMContext-Provider";
 import CommonBM from "./CommonBM";
 import EditBookmark from "./EditBM";
+import EditingPannel from "./EditingPannel";
 
 const Bmlist = () => {
   const [editBM, setEditBM] = useState(null); // Track the bookmark being edited
@@ -42,22 +41,29 @@ const Bmlist = () => {
     }
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
-    <div className="flex flex-wrap gap-4 m-2 mt-5">
+    <div className="flex flex-wrap gap-4 m-2 mt-5 relative">
       {BookMark.map((BM) => {
         const isEditing = BM.id === editBM?.id;
         const isPanelOpen = panelOpenId === BM.id;
 
         return (
-          <div key={BM.id} className="">
-            <div className="relative flex items-center  py-2 hover:rounded-xl justify-center px-4 ">
+          <div
+            key={BM.id}
+            className={`${
+              !isEditing
+                ? "hover:border-[0.2px] hover:border-gray-100 rounded-xl"
+                : ""
+            }  group relative`}
+          >
+            <div className=" flex items-center  py-2 hover:rounded-xl justify-center px-4 ">
               {isEditing ? (
                 <EditBookmark
                   BM={editBM}
@@ -72,7 +78,7 @@ const Bmlist = () => {
                   </div>
 
                   <button
-                    className="absolute top-0 right-0 text-gray-500 hover:text-gray-700 focus:outline-none px-1 py-1"
+                    className="absolute top-0 right-0 text-gray-500 hover:text-gray-700 focus:outline-none px-1 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                     onClick={() => togglePanel(BM.id)}
                     ref={buttonRef}
                   >
@@ -82,25 +88,19 @@ const Bmlist = () => {
               )}
             </div>
 
-            <div className="relative">
+            <div className="">
               {isPanelOpen && (
-                <div
-                  ref={panelRef}
-                  className="absolute right-0 mt-1 w-32 bg-gray-800 text-white rounded-md shadow-lg py-2 z-20"
-                >
-                  <button
-                    className="block px-4 py-2 text-sm w-full text-left hover:bg-gray-700"
-                    onClick={() => openEditPanel(BM.id)}
-                  >
-                    <CiEdit className="inline-block mr-2" /> Edit
-                  </button>
-                  <button
-                    className="block px-4 py-2 text-sm w-full text-left hover:bg-gray-700"
-                    onClick={() => handleDeleteBM(BM.id)}
-                  >
-                    <MdDeleteOutline className="inline-block mr-2" /> Delete
-                  </button>
-                </div>
+                // Editing pannel for BookMarks
+                <>
+                  <EditingPannel
+                    BM={BM}
+                    panelRef={panelRef}
+                    openEditPanel={openEditPanel}
+                    handleDeleteBM={handleDeleteBM}
+                    handleClickOutside={handleClickOutside}
+                    
+                  />
+                </>
               )}
             </div>
           </div>
