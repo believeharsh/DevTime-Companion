@@ -2,7 +2,7 @@ export const addNewBM = (BookMark , newBM) => {
 
   const newBookMark = {
     id: newBM.id,
-    name: newBM.name,
+    text: newBM.text,
     url: newBM.url,
   };
   const newBMArray = [...BookMark, newBookMark];
@@ -16,6 +16,6 @@ export const addNewBM = (BookMark , newBM) => {
   
   export const editBM = (BookMark, BMId, newBM) => {
     return BookMark.map((BM) =>
-      BM.id === BMId ? { ...BM, text: newBM, url : newBM.url } : BM
+      BM.id === BMId ? { ...BM, id:newBM.id , text: newBM.text, url : newBM.url, } : BM
     );
   };

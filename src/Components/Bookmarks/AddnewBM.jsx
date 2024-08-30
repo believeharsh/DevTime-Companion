@@ -15,6 +15,7 @@ const AddnewBM = () => {
       text: bookmarkText,
       url: bookmarkUrl,
     });
+     
     setBookmarkText("");
     setBookmarkUrl("");
   };

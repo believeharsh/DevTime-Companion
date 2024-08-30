@@ -42,8 +42,13 @@ const BMContextProvider = ({ children }) => {
     setBookMark(filteredBM);
   };
 
-  const handleEditBM = (BMId, newBM) => {
-    const EditedBM = editBM(BookMark, BMId, newBM);
+  const handleEditBM = (BmId, editedText, editedUrl) => {
+    const EditedBM = editBM(BookMark, BmId, {
+      id : BmId, 
+      text : editedText,
+      url : editedUrl
+
+    });
     setBookMark(EditedBM);
   };
 

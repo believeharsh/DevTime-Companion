@@ -1,69 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import { useBM } from '../../Context/BookMark-Context/BMContext-Provider';
-import { FaPlus } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
 
-const EditBM = ({ BM }) => {
-  const { handleEditBM } = useBM();
-  const [bookmarkText, setBookmarkText] = useState(BM.text || "");
-  const [bookmarkUrl, setBookmarkUrl] = useState(BM.url || "");
+const EditBookmark = ({ BM, handleEditSubmit, handleDeleteBM, closeEditPanel }) => {
+  const [editedText, setEditedText] = useState(BM.text);
+  const [editedUrl, setEditedUrl] = useState(BM.url);
 
   useEffect(() => {
-    // Set initial values when BM prop changes
-    setBookmarkText(BM.text || "");
-    setBookmarkUrl(BM.url || "");
+    setEditedText(BM.text);
+    setEditedUrl(BM.url);
   }, [BM]);
 
-  const handleSubmit = (e) => {
+  const handleTextChange = (e) => {
+    setEditedText(e.target.value);
+  };
+
+  const handleUrlChange = (e) => {
+    setEditedUrl(e.target.value);
+  };
+
+  const onSubmit = (e) => {
     e.preventDefault();
-    handleEditBM(BM.id, {
-      id: BM.id, // Keep the original ID
-      text: bookmarkText,
-      url: bookmarkUrl,
-    });
-    setBookmarkText("");
-    setBookmarkUrl("");
+    if (editedText.trim() === "" || editedUrl.trim() === "") {
+      alert("Both text and URL cannot be empty");
+      return;
+    }
+    handleEditSubmit(BM.id, editedText, editedUrl);
+    closeEditPanel(); // Close the edit panel after submitting
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="flex items-center space-x-4">
-        {/* First Child: Input Fields */}
-        <div className="flex-1 flex space-x-2" style={{ width: "90%" }}>
-          {/* Bookmark Text (25% width) */}
-          <div className="w-1/4">
-            <input
-              type="text"
-              value={bookmarkText} // Use state value here
-              onChange={(e) => setBookmarkText(e.target.value)} // Update state
-              placeholder="Name"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white"
-            />
-          </div>
-
-          {/* Bookmark URL (75% width) */}
-          <div className="flex-1">
-            <input
-              type="url"
-              value={bookmarkUrl} // Use state value here
-              onChange={(e) => setBookmarkUrl(e.target.value)} // Update state
-              placeholder="URL"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white"
-            />
-          </div>
+    <div className="p-4 border rounded text-white bg-transparent mx-auto">
+      <form onSubmit={onSubmit}>
+        <div className="mb-2">
+          <label className="block text-sm font-bold mb-1">Text:</label>
+          <input
+            type="text"
+            value={editedText}
+            onChange={handleTextChange}
+            className="w-full px-2 py-1 border rounded bg-gray-700"
+          />
         </div>
-
-        {/* Second Child: Add Button (10% width) */}
-        <div className="flex-shrink-0" style={{ width: "10%" }}>
+        <div className="mb-2">
+          <label className="block text-sm font-bold mb-1">URL:</label>
+          <input
+            type="text"
+            value={editedUrl}
+            onChange={handleUrlChange}
+            className="w-full px-2 py-1 border rounded bg-gray-700"
+          />
+        </div>
+        <div className="flex justify-between">
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600 flex items-center justify-center text-2xl"
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
-            <FaPlus />
+            Save
+          </button>
+          <button
+            type="button"
+            onClick={() => handleDeleteBM(BM.id)}
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          >
+            Delete
+          </button>
+          <button
+            type="button"
+            onClick={closeEditPanel}
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+          >
+            Cancel
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
-export default EditBM;
+export default EditBookmark;

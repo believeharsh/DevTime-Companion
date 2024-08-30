@@ -4,11 +4,10 @@ import { CiEdit } from "react-icons/ci";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useBM } from "../../Context/BookMark-Context/BMContext-Provider";
 import CommonBM from "./CommonBM";
-import AddnewBM from "./AddnewBM";
-import EditBM from "./EditBM";
+import EditBookmark from "./EditBM";
 
 const Bmlist = () => {
-  const [editBM, setEditBM] = useState(null);
+  const [editBM, setEditBM] = useState(null); // Track the bookmark being edited
   const [panelOpenId, setPanelOpenId] = useState(null);
   const { handleEditBM, handleDeleteBM, BookMark } = useBM();
   const panelRef = useRef(null);
@@ -21,6 +20,15 @@ const Bmlist = () => {
   const openEditPanel = (BmId) => {
     const BMToEdit = BookMark.find((BM) => BM.id === BmId);
     setEditBM(BMToEdit);
+    setPanelOpenId(null); // Close the panel when opening the edit form
+  };
+
+  const closeEditPanel = () => {
+    setEditBM(null); // Close the edit panel by setting editBM to null
+  };
+
+  const handleEditSubmit = (BmId, editedText, editedUrl) => {
+    handleEditBM(BmId, editedText, editedUrl);
   };
 
   const handleClickOutside = (e) => {
@@ -43,21 +51,21 @@ const Bmlist = () => {
 
   return (
     <div className="flex flex-wrap gap-4 m-2 mt-5">
-      {/* Conditionally render AddnewBM or EditBM at the top */}
-      {editBM === null ? (
-        <AddnewBM />
-      ) : (
-        <EditBM BM={editBM} />
-      )}
-
       {BookMark.map((BM) => {
         const isEditing = BM.id === editBM?.id;
         const isPanelOpen = panelOpenId === BM.id;
 
         return (
           <div key={BM.id} className="">
-            <div className="relative flex items-center hover:border-gray-50 hover:border-[0.3px] py-2 hover:rounded-xl justify-center px-4 ">
-              {!isEditing && (
+            <div className="relative flex items-center  py-2 hover:rounded-xl justify-center px-4 ">
+              {isEditing ? (
+                <EditBookmark
+                  BM={editBM}
+                  handleEditSubmit={handleEditSubmit}
+                  handleDeleteBM={handleDeleteBM}
+                  closeEditPanel={closeEditPanel}
+                />
+              ) : (
                 <>
                   <div className="flex justify-center items-center">
                     <CommonBM BM={BM} />
