@@ -75,12 +75,12 @@ const Navbar = () => {
                 </Link>
               </button>
               <button className="navbar-buttons">
-                <Link to="tasks" className="">
+                <Link to="" className="">
                   Watch
                 </Link>
               </button>
               <button className="navbar-buttons">
-                <Link to="bookmarks" className="">
+                <Link to="" className="">
                   Reminders
                 </Link>
               </button>

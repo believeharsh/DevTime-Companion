@@ -11,8 +11,6 @@ import ImpTasklist from "./Components/TodoPages/Tasks/ImportantTasks";
 function App() {
   return (
     <>
-    
-      
         <Router>
         <Navbar />
         <div className="">
@@ -23,7 +21,7 @@ function App() {
             <Route path="/bookmarks" element={<AllBs/>} />
             <Route path="/reminder" element={<AllBs/>} />
             <Route path="/watch" element={<AllBs/>} />
-            <Route path="/tasks" element={<GetTasks />}>
+            <Route path="/tasks/today" element={<GetTasks />}>
               <Route path="today" element={<TodayTasklist />} />
               <Route path="important" element={<ImpTasklist />} />
               <Route path="missing" element={<MissingTasklist />} />
