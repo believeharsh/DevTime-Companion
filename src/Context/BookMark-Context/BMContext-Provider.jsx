@@ -14,7 +14,7 @@ const InitialBM = [
   { id: uuidv4(), text: "Youtube", url: "https://www.youtube.com/" },
 ];
 
-const LOCAL_STORAGE_KEY = "CodingBM";
+const LOCAL_STORAGE_KEY = "bookmarks";
 
 const BMContextProvider = ({ children }) => {
   const [BookMark, setBookMark] = useState(() => {

@@ -9,6 +9,7 @@ const Bmlist = () => {
   const [editBM, setEditBM] = useState(null); // Track the bookmark being edited
   const [panelOpenId, setPanelOpenId] = useState(null);
   const { handleEditBM, handleDeleteBM, BookMark } = useBM();
+  console.log(BookMark)
   const panelRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -41,12 +42,12 @@ const Bmlist = () => {
     }
   };
 
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="flex flex-wrap gap-4 m-2 mt-5 relative">
