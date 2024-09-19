@@ -7,31 +7,33 @@ import Homepage from "./Components/Pages/Homepage/Homapage";
 import TodayTasklist from "./Components/TodoPages/Tasks/TodayTasklist";
 import MissingTasklist from "./Components/TodoPages/Tasks/Missingtask";
 import ImpTasklist from "./Components/TodoPages/Tasks/ImportantTasks";
+import Watch from "./Components/DigitalWatch/Watch";
+import Reminder from "./Components/Reminders/Remider";
 
 function App() {
   return (
     <>
-        <Router>
+      <Router>
         <Navbar />
         <div className="">
           <MainContextProvider>
-          <Routes>
-            {/* Define your routes here */}
-            <Route path="*" element={<Homepage/>} />
-            <Route path="/bookmarks" element={<AllBs/>} />
-            <Route path="/reminder" element={<AllBs/>} />
-            <Route path="/watch" element={<AllBs/>} />
-            <Route path="/tasks/today" element={<GetTasks />}>
-              <Route path="today" element={<TodayTasklist />} />
-              <Route path="important" element={<ImpTasklist />} />
-              <Route path="missing" element={<MissingTasklist />} />
-            </Route>
-            {/* You can add more routes as needed */}
-          </Routes>
+            <Routes>
+              {/* Define your routes here */}
+              <Route path="*" element={<Homepage />} />
+              <Route path="/bookmarks" element={<AllBs />} />
+              <Route path="/reminder" element={<Reminder/>} />
+              <Route path="/watch" element={<Watch/>} />
+              <Route path="/tasks" element={<GetTasks />}>
+                {/* Nested routes */}
+                <Route path="today" element={<TodayTasklist />} />
+                <Route path="important" element={<ImpTasklist />} />
+                <Route path="missing" element={<MissingTasklist />} />
+              </Route>
+              {/* You can add more routes as needed */}
+            </Routes>
           </MainContextProvider>
-          </div>
-        </Router>
-      
+        </div>
+      </Router>
     </>
   );
 }

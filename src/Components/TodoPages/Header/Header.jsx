@@ -13,14 +13,15 @@ const Header = () => {
 
   const location = useLocation();
   useEffect(() => {
+    // Check full pathnames here :: 
     switch (location.pathname) {
-      case "/important":
+      case "/tasks/important":
         settasktype("Important");
         break;
-      case "/missing":
+      case "/tasks/missing":
         settasktype("Missing");
         break;
-      case "/today":
+      case "/tasks/today":
       default:
         settasktype("Today");
         break;

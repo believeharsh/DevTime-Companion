@@ -67,14 +67,14 @@ const Navbar = () => {
             <div className="Navbar-btns-div">
              
               <button className="navbar-buttons">
-              <Link to="/today" className="">Today</Link>
+              <Link to="today" className="">Today</Link>
                 
               </button>
               <button className="navbar-buttons">
-              <Link to="/important" className="">Important</Link>
+              <Link to="important" className="">Important</Link>
               </button>
               <button className="navbar-buttons">
-              <Link to="/missing" className="">Missing</Link>
+              <Link to="missing" className="">Missing</Link>
               </button>
             </div>
           </div>
