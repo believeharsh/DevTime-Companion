@@ -12,8 +12,8 @@ const TaskList = ({
   const [editTaskId, setEditTaskId] = useState(null);
   const [editedTaskText, setEditedTaskText] = useState("");
   const [panelOpenId, setPanelOpenId] = useState(null);
-  const panelRef = useRef(null);
-  const buttonRef = useRef(null);
+  const panelRefs = useRef({});
+  const buttonRefs = useRef({});
 
   const handleEditInputChange = (e) => {
     setEditedTaskText(e.target.value);
@@ -46,13 +46,19 @@ const TaskList = ({
   };
 
   const handleClickOutside = (e) => {
-    if (
-      panelRef.current &&
-      !panelRef.current.contains(e.target) &&
-      buttonRef.current &&
-      !buttonRef.current.contains(e.target)
-    ) {
-      setPanelOpenId(null);
+    // Close panel if clicked outside
+    if (panelOpenId) {
+      const panelRef = panelRefs.current[panelOpenId];
+      const buttonRef = buttonRefs.current[panelOpenId];
+
+      if (
+        panelRef &&
+        !panelRef.contains(e.target) &&
+        buttonRef &&
+        !buttonRef.contains(e.target)
+      ) {
+        setPanelOpenId(null);
+      }
     }
   };
 
@@ -61,7 +67,7 @@ const TaskList = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [panelOpenId]);
 
   return (
     <div>
@@ -73,9 +79,7 @@ const TaskList = ({
           return (
             <li
               key={task.id}
-              className={` Tasklist-li ${
-                task.completed ? "bg-gray-200" : ""
-              }`}
+              className={`Tasklist-li ${task.completed ? "bg-gray-200" : ""}`}
             >
               <div className="flex justify-between">
                 {isEditing ? (
@@ -87,10 +91,7 @@ const TaskList = ({
                       onKeyDown={(event) => handleKeyPress(event, task.id)}
                       className="Task-input"
                     />
-                    <button
-                      className=""
-                      onClick={() => handleEditSubmit(task.id)}
-                    >
+                    <button onClick={() => handleEditSubmit(task.id)}>
                       Save
                     </button>
                   </div>
@@ -111,15 +112,17 @@ const TaskList = ({
                       <button
                         className="three-dot-btn"
                         onClick={() => togglePanel(task.id)}
-                        ref={buttonRef}
+                        ref={(el) => (buttonRefs.current[task.id] = el)}
                       >
-                        <BsThreeDotsVertical  className="mx-1 my-1"/>
+                        <BsThreeDotsVertical className="mx-1 my-1" />
                       </button>
                       {isPanelOpen && (
                         <div
-                          ref={panelRef}
+                          ref={(el) => (panelRefs.current[task.id] = el)}
+                     
                           className="threedot-panel"
                         >
+                        {console.log(buttonRefs.current[task.id])}
                           <button
                             className="threedot-panel-btns"
                             onClick={() => openEditPanel(task.id)}

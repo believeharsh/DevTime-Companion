@@ -9,9 +9,10 @@ const Bmlist = () => {
   const [editBM, setEditBM] = useState(null); // Track the bookmark being edited
   const [panelOpenId, setPanelOpenId] = useState(null);
   const { handleEditBM, handleDeleteBM, BookMark } = useBM();
-  console.log(BookMark)
-  const panelRef = useRef(null);
-  const buttonRef = useRef(null);
+
+  // Use refs as objects to store multiple button and panel refs
+  const panelRef = useRef({});
+  const buttonRef = useRef({});
 
   const togglePanel = (BmId) => {
     setPanelOpenId(panelOpenId === BmId ? null : BmId);
@@ -32,11 +33,14 @@ const Bmlist = () => {
   };
 
   const handleClickOutside = (e) => {
+    const panel = panelRef.current[panelOpenId];
+    const button = buttonRef.current[panelOpenId];
+
     if (
-      panelRef.current &&
-      !panelRef.current.contains(e.target) &&
-      buttonRef.current &&
-      !buttonRef.current.contains(e.target)
+      panel &&
+      !panel.contains(e.target) &&
+      button &&
+      !button.contains(e.target)
     ) {
       setPanelOpenId(null);
     }
@@ -47,7 +51,7 @@ const Bmlist = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [panelOpenId]);
 
   return (
     <div className="flex flex-wrap gap-4 m-2 mt-5 relative">
@@ -64,7 +68,7 @@ const Bmlist = () => {
                 : ""
             }  group relative`}
           >
-            <div className=" flex items-center  py-2 hover:rounded-xl justify-center px-4 ">
+            <div className="flex items-center py-2 hover:rounded-xl justify-center px-4">
               {isEditing ? (
                 <EditBookmark
                   BM={editBM}
@@ -81,7 +85,7 @@ const Bmlist = () => {
                   <button
                     className="absolute top-0 right-0 text-gray-500 hover:text-gray-700 focus:outline-none px-1 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                     onClick={() => togglePanel(BM.id)}
-                    ref={buttonRef}
+                    ref={(el) => (buttonRef.current[BM.id] = el)}
                   >
                     <BsThreeDotsVertical />
                   </button>
@@ -89,19 +93,14 @@ const Bmlist = () => {
               )}
             </div>
 
-            <div className="">
+            <div>
               {isPanelOpen && (
-                // Editing pannel for BookMarks
-                <>
-                  <EditingPannel
-                    BM={BM}
-                    panelRef={panelRef}
-                    openEditPanel={openEditPanel}
-                    handleDeleteBM={handleDeleteBM}
-                    handleClickOutside={handleClickOutside}
-                    
-                  />
-                </>
+                <EditingPannel
+                  BM={BM}
+                  panelRef={(el) => (panelRef.current[BM.id] = el)}
+                  openEditPanel={openEditPanel}
+                  handleDeleteBM={handleDeleteBM}
+                />
               )}
             </div>
           </div>
