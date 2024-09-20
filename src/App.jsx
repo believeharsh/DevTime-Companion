@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="">
           <MainContextProvider>
             <Routes>

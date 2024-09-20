@@ -10,17 +10,14 @@
 .line-clamp-2 {
   @apply overflow-hidden text-ellipsis;
   display: -webkit-box;
-  /* -webkit-line-clamp: 2; */
   -webkit-box-orient: vertical;
 }
 
 body {
-  background: url("https://img.freepik.com/premium-photo/line-white-stars-is-shown-this-image_994023-196328.jpg");
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-  margin: 0;
+  @apply bg-neutral-900 bg-cover bg-center min-h-svh m-0
+ 
 }
+
 
 .navbar {
   
