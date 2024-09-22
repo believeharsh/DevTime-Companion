@@ -22,7 +22,7 @@ function App() {
               <Route path="/bookmarks" element={<AllBs />} />
               <Route path="/reminder" element={<Reminder/>} />
               <Route path="/watch" element={<Watch/>} />
-              <Route path="/tasks" element={<GetTasks />}>
+              <Route path="/tasks" element={<GetTasks/>}>
                 {/* Nested routes */}
                 <Route path="today" element={<TodayTasklist />} />
                 <Route path="important" element={<ImpTasklist />} />

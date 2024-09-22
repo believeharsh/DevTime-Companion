@@ -1,4 +1,6 @@
 import React from "react";
+import ToDo from "./ToDo";
+import BookMark from "./BookMark";
 
 // Sidebar Component
 const Sidebar = () => {
@@ -55,9 +57,11 @@ const MainSection = () => {
       <div className="w-[45%] flex space-x-2 justify-between h-full">
         <div className="bg-neutral-800 w-full p-4 rounded-lg shadow-md">
           <h3 className="text-lg font-bold">ToDo List </h3>
+          <ToDo/>
         </div>
         <div className="bg-neutral-800 w-full p-4 rounded-lg shadow-md">
           <h3 className="text-lg font-bold">BookMarks </h3>
+          <BookMark/>
         </div>
       </div>
     </div>
