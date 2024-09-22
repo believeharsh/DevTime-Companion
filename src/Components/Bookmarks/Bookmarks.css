@@ -1,0 +1,168 @@
+/* Styles for AddnewBM Component */
+
+/* Wrapper for form */
+.AddnewBM-addbm-form {
+  @apply flex items-center space-x-4;
+}
+
+/* Input field container (25% width for text and 75% for URL) */
+.AddnewBM-input-container {
+  @apply flex-1 flex space-x-2;
+}
+
+.AddnewBM-bookmark-text {
+  @apply w-1/4;
+}
+
+.AddnewBM-bookmark-url {
+  @apply flex-1;
+}
+
+/* Input fields */
+.AddnewBM-input-field {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-900 text-white;
+}
+
+/* Add button container (10% width) */
+.AddnewBM-add-button-container {
+  @apply flex-shrink-0;
+}
+
+/* Add button */
+.AddnewBM-add-button {
+  @apply w-full px-4 py-2 bg-gray-500 text-white rounded-md shadow hover:bg-blue-600 flex items-center justify-center;
+}
+
+/**************************************************************************************/
+/* Styles for AllBs Component */
+
+.AllBMs-container {
+  @apply left-0 right-0 bottom-0 top-0 overflow-auto;
+}
+
+/* Wrapper for centering content */
+.AllBMs-wrapper {
+  @apply max-w-md mx-auto p-4;
+}
+
+/* Card style for containing everything */
+.everything-card {
+  background: transparent;
+  border: white 1px solid;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.everything-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease-in-out;
+  background: var(--primary);
+  box-shadow: 0 0 11px grey;
+}
+
+/* Section containing AddnewBM component */
+.AllBMs-addnewbm-section {
+  @apply border-white border-b-[0.3px] p-4;
+}
+
+/**************************************************************************************/
+/* Styles for Bmlist Component */
+
+.BMlist-container {
+  @apply flex flex-wrap gap-4 m-2 mt-5 relative;
+}
+
+.BMlist-bookmark-item {
+  @apply relative hover:border-[0.2px] hover:border-gray-100 rounded-xl;
+}
+
+.BMlist-bookmark-content {
+  @apply flex items-center py-2 hover:rounded-xl justify-center px-4;
+}
+
+.BMlist-edit-button {
+  @apply absolute top-0 right-0 text-gray-500 hover:text-gray-700 focus:outline-none px-1 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200;
+}
+
+.BMlist-panel-open {
+  @apply relative;
+}
+
+
+/* Styles for CommonBM Component */
+
+/* Container for the favicon and bookmark text */
+.commonBM-container {
+    @apply text-center;
+  }
+  
+  /* Favicon container */
+  .commonBM-favicon-container {
+    @apply bg-gray-800 py-3 rounded-full my-1 h-[45px] w-[45px] flex justify-center items-center mx-auto ;
+  }
+  
+  /* Favicon image styling */
+  .commonBM-favicon-image {
+    @apply h-8 w-8 text-center;
+  }
+  
+  /* Bookmark text styling */
+  .commonBM-bookmark-text {
+    @apply text-white text-sm mb-4;
+  }
+
+/* Styles for EditBookmark Component */
+
+/* Container for the edit form */
+.editBM-container {
+    @apply p-4 border rounded text-white bg-transparent mx-auto;
+  }
+  
+  /* Input label */
+  .editBM-label {
+    @apply block text-sm font-bold mb-1;
+  }
+  
+  /* Input fields */
+  .editBM-input {
+    @apply w-full px-2 py-1 border rounded bg-gray-700;
+  }
+  
+  /* Button styling */
+  .editBM-button {
+    @apply px-4 py-2 rounded text-white;
+  }
+  
+  /* Save button */
+  .editBM-save {
+    @apply bg-blue-500 hover:bg-blue-600;
+  }
+  
+  /* Delete button */
+  .editBM-delete {
+    @apply bg-red-500 hover:bg-red-600;
+  }
+  
+  /* Cancel button */
+  .editBM-cancel {
+    @apply bg-gray-500 hover:bg-gray-600;
+  }
+  
+  /* Flexbox container for buttons */
+  .editBM-buttons {
+    @apply flex justify-between;
+  }
+
+/* editing-panel.css */
+
+/* Container for the editing panel */
+.editing-panel-container {
+    @apply absolute top-2 mx-auto ml-1 mt-1 w-20 bg-gray-800 text-white rounded-md shadow-lg py-3 z-20;
+  }
+  
+  /* Button styles for the editing and delete actions */
+  .editing-panel-button {
+    @apply block px-4 py-1 text-sm w-full text-left hover:bg-gray-700;
+  }

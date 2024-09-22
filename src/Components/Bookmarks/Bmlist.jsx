@@ -4,13 +4,13 @@ import { useBM } from "../../Context/BookMark-Context/BMContext-Provider";
 import CommonBM from "./CommonBM";
 import EditBookmark from "./EditBM";
 import EditingPannel from "./EditingPannel";
+import './Bookmarks.css'; // Import the CSS file
 
 const Bmlist = () => {
   const [editBM, setEditBM] = useState(null); // Track the bookmark being edited
   const [panelOpenId, setPanelOpenId] = useState(null);
   const { handleEditBM, handleDeleteBM, BookMark } = useBM();
 
-  // Use refs as objects to store multiple button and panel refs
   const panelRef = useRef({});
   const buttonRef = useRef({});
 
@@ -36,12 +36,7 @@ const Bmlist = () => {
     const panel = panelRef.current[panelOpenId];
     const button = buttonRef.current[panelOpenId];
 
-    if (
-      panel &&
-      !panel.contains(e.target) &&
-      button &&
-      !button.contains(e.target)
-    ) {
+    if (panel && !panel.contains(e.target) && button && !button.contains(e.target)) {
       setPanelOpenId(null);
     }
   };
@@ -54,7 +49,7 @@ const Bmlist = () => {
   }, [panelOpenId]);
 
   return (
-    <div className="flex flex-wrap gap-4 m-2 mt-5 relative">
+    <div className="BMlist-container">
       {BookMark.map((BM) => {
         const isEditing = BM.id === editBM?.id;
         const isPanelOpen = panelOpenId === BM.id;
@@ -62,13 +57,9 @@ const Bmlist = () => {
         return (
           <div
             key={BM.id}
-            className={`${
-              !isEditing
-                ? "hover:border-[0.2px] hover:border-gray-100 rounded-xl"
-                : ""
-            }  group relative`}
+            className={` group BMlist-bookmark-item ${isEditing ? "" : ""}`}
           >
-            <div className="flex items-center py-2 hover:rounded-xl justify-center px-4">
+            <div className="BMlist-bookmark-content">
               {isEditing ? (
                 <EditBookmark
                   BM={editBM}
@@ -83,7 +74,7 @@ const Bmlist = () => {
                   </div>
 
                   <button
-                    className="absolute top-0 right-0 text-gray-500 hover:text-gray-700 focus:outline-none px-1 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                    className="BMlist-edit-button"
                     onClick={() => togglePanel(BM.id)}
                     ref={(el) => (buttonRef.current[BM.id] = el)}
                   >

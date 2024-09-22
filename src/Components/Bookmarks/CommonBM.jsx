@@ -1,16 +1,16 @@
 import React from "react";
+import './Bookmarks.css'; // Import the CSS file
 
 const CommonBM = ({ BM }) => {
   // Construct the favicon URL
   const faviconUrl = `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${BM.url}`;
 
-
   return (
-    <div className="">
-      <div className="bg-gray-800 py-3 rounded-full my-1 h-[45px] w-[45px] flex justify-center items-center mx-auto">
+    <div className="commonBM-container">
+      <div className="commonBM-favicon-container">
         <a href={BM.url} target="_blank" rel="noopener noreferrer">
           <img
-            className="h-8 w-8 text-center"
+            className="commonBM-favicon-image"
             src={faviconUrl}
             alt={`Favicon for ${BM.text}`}
             onError={(e) => {
@@ -21,7 +21,7 @@ const CommonBM = ({ BM }) => {
         </a>
       </div>
 
-      <p className="text-center mb-4 text-white text-sm">{BM.text}</p>
+      <p className="commonBM-bookmark-text">{BM.text}</p>
     </div>
   );
 };

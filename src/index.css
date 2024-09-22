@@ -41,7 +41,7 @@ body {
    0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.everything-card{
+/* .everything-card{
    background: transparent;
    border: white 1px solid;
    border-radius: 10px;
@@ -58,7 +58,7 @@ body {
     transition: transform 0.2s ease-in-out;
     background: var(--primary);
     box-shadow: 0 0 11px grey; 
-}
+} */
 
 .NewTask-input {
   @apply bg-gray-800 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none

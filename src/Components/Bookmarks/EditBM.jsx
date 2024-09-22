@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './Bookmarks.css'; // Import the CSS file
 
 const EditBookmark = ({ BM, handleEditSubmit, handleDeleteBM, closeEditPanel }) => {
   const [editedText, setEditedText] = useState(BM.text);
@@ -28,44 +29,44 @@ const EditBookmark = ({ BM, handleEditSubmit, handleDeleteBM, closeEditPanel }) 
   };
 
   return (
-    <div className="p-4 border rounded text-white bg-transparent mx-auto">
+    <div className="editBM-container">
       <form onSubmit={onSubmit}>
         <div className="mb-2">
-          <label className="block text-sm font-bold mb-1">Text:</label>
+          <label className="editBM-label">Text:</label>
           <input
             type="text"
             value={editedText}
             onChange={handleTextChange}
-            className="w-full px-2 py-1 border rounded bg-gray-700"
+            className="editBM-input"
           />
         </div>
         <div className="mb-2">
-          <label className="block text-sm font-bold mb-1">URL:</label>
+          <label className="editBM-label">URL:</label>
           <input
             type="text"
             value={editedUrl}
             onChange={handleUrlChange}
-            className="w-full px-2 py-1 border rounded bg-gray-700"
+            className="editBM-input"
           />
         </div>
-        <div className="flex justify-between">
+        <div className="editBM-buttons">
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            className="editBM-button editBM-save"
           >
             Save
           </button>
           <button
             type="button"
             onClick={() => handleDeleteBM(BM.id)}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            className="editBM-button editBM-delete"
           >
             Delete
           </button>
           <button
             type="button"
             onClick={closeEditPanel}
-            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+            className="editBM-button editBM-cancel"
           >
             Cancel
           </button>
