@@ -18,13 +18,12 @@ function App() {
         <MainContextProvider>
           <Routes>
             {/* Home route with nested routes */}
-            <Route path="/" element={<AppContainer/>}>
-              {/* When the user navigates to '/', render the Homepage component */}
-              <Route index element={<DashBoard/>} />
+            <Route path="/" element={<AppContainer />}>
+              {/* When the user navigates to '/', render the DashBoard component */}
+              <Route index element={<DashBoard />} />
 
               {/* Render nested routes like tasks and bookmarks */}
-              <Route path="tasks" element={<GetTasks/>}>
-                
+              <Route path="tasks" element={<GetTasks />}>
                 <Route path="today" element={<TodayTasklist />} />
                 <Route path="important" element={<ImpTasklist />} />
                 <Route path="missing" element={<MissingTasklist />} />
@@ -45,8 +44,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
