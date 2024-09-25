@@ -19,9 +19,10 @@ import { Navigate } from "react-router-dom";
 function App() {
   const { currentUser } = useContext(AuthContext);
 
-  const RequireAuth = ({ children }) => {
-    return currentUser ? children : <Navigate to="/login" />;
-  };
+  function RequireAuth({ children }) {
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    return isAuthenticated ? children : <Navigate to="/login" />;
+  }
 
   return (
     <>
