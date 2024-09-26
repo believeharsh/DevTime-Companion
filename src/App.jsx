@@ -20,7 +20,7 @@ function App() {
   const { currentUser } = useContext(AuthContext);
 
   function RequireAuth({ children }) {
-    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
     return isAuthenticated ? children : <Navigate to="/login" />;
   }
 
@@ -32,11 +32,12 @@ function App() {
             {/* Home route with nested routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/" element={<RequireAuth><AppContainer /></RequireAuth>}>
-              {/* When the user navigates to '/', render the DashBoard component */}
-              <Route index element={<DashBoard />} />
 
-              {/* Render nested routes like tasks and bookmarks */}
+            <Route
+              path="/" element={<RequireAuth><AppContainer /></RequireAuth>}
+            >
+              {/* Protected routes */}
+              <Route index element={<DashBoard />} />
               <Route path="tasks" element={<GetTasks />}>
                 <Route path="today" element={<TodayTasklist />} />
                 <Route path="important" element={<ImpTasklist />} />

@@ -14,7 +14,7 @@ function Signup() {
       localStorage.setItem(username, JSON.stringify({ password }));
       alert("Signup successful, You can log in now");
 
-      navigate("/login"); // Redirect to Dashboard
+      navigate("/login"); // Redirect to Login page 
     }
   };
 
