@@ -5,7 +5,7 @@ const Sidebar = () => {
         <div className="flex flex-col justify-between h-full">
           <div className="flex flex-col items-center">
             <img
-              src="../../public/Images/fevicon.png"
+              src="/Images/fevIcon.png"
               alt="Profile Image"
               className="rounded-full w-24 h-24"
             />
