@@ -1,43 +1,58 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainContextProvider from "./Context/MainContext/Maincontext";
-import GetTasks from "./Components/TodoPages/AllTasks/GetTasks";
-import AllBs from "./Components/Bookmarks/AllBMs";
-import TodayTasklist from "./Components/TodoPages/Tasks/TodayTasklist";
-import MissingTasklist from "./Components/TodoPages/Tasks/Missingtask";
-import ImpTasklist from "./Components/TodoPages/Tasks/ImportantTasks";
-import Watch from "./Components/DigitalWatch/Watch";
-import Reminder from "./Components/Reminders/Remider";
+import { Suspense, lazy, useContext } from "react";
+import { Navigate } from "react-router-dom";
+import Spinner from "./Components/General/Spinner";
+
+// Lazy-loaded components
+const GetTasks = lazy(() => import("./Components/TodoPages/AllTasks/GetTasks"));
+const AllBs = lazy(() => import("./Components/Bookmarks/AllBMs"));
+const TodayTasklist = lazy(() =>
+  import("./Components/TodoPages/Tasks/TodayTasklist")
+);
+const MissingTasklist = lazy(() =>
+  import("./Components/TodoPages/Tasks/Missingtask")
+);
+const ImpTasklist = lazy(() =>
+  import("./Components/TodoPages/Tasks/ImportantTasks")
+);
+const Watch = lazy(() => import("./Components/DigitalWatch/Watch"));
+const Reminder = lazy(() => import("./Components/Reminders/Remider"));
+const Settings = lazy(() => import("./Components/Settings/Settings"));
+
+// Eagerly loaded
 import AppContainer from "./Components/Pages/AppContainer/AppContainer";
 import DashBoard from "./Components/Pages/DashBoard/Dashboard";
-import Settings from "./Components/Settings/Settings";
-import { AuthContext } from "./Context/Auth/AuthContext";
 import Login from "./Components/Login-Signup/Login";
 import Signup from "./Components/Login-Signup/Signup";
-import { useContext } from "react";
-import { Navigate } from "react-router-dom";
 
 function App() {
-  const { currentUser } = useContext(AuthContext);
-
   function RequireAuth({ children }) {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     return isAuthenticated ? children : <Navigate to="/login" />;
   }
 
   return (
-    <>
-      <Router>
-        <MainContextProvider>
+    <Router>
+      <MainContextProvider>
+        <Suspense fallback={<Spinner />}>
+          {" "}
+          {/* Spinner used as fallback */}
           <Routes>
             {/* Home route with nested routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
             <Route
-              path="/" element={<RequireAuth><AppContainer /></RequireAuth>}
+              path="/"
+              element={
+                <RequireAuth>
+                  <AppContainer />
+                </RequireAuth>
+              }
             >
               {/* Protected routes */}
-              <Route index element={<DashBoard />} />
+              <Route index element={<DashBoard />} /> {/* Eagerly loaded */}
               <Route path="tasks" element={<GetTasks />}>
                 <Route path="today" element={<TodayTasklist />} />
                 <Route path="important" element={<ImpTasklist />} />
@@ -52,9 +67,9 @@ function App() {
             {/* Fallback route */}
             {/* <Route path="*" element={<Homepage />} /> */}
           </Routes>
-        </MainContextProvider>
-      </Router>
-    </>
+        </Suspense>
+      </MainContextProvider>
+    </Router>
   );
 }
 
