@@ -37,7 +37,6 @@ function App() {
       <MainContextProvider>
         <Suspense fallback={<Spinner />}>
           {" "}
-          {/* Spinner used as fallback */}
           <Routes>
             {/* Home route with nested routes */}
             <Route path="/login" element={<Login />} />

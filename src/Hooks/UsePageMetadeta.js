@@ -10,8 +10,10 @@ const usePageMetadata = () => {
       return { title: "Your Bookmarks" };
     case "/dashboard":
       return { title: "Devtime-Companion Dashboard" };
+    case "/settings":
+      return { title: "Settings" };
     default:
-      return { title: "Welcome to Devtime-Companion" };
+      return { title: "Devtime-Companion Dashboard" };
   }
 };
 
