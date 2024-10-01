@@ -33,7 +33,7 @@ const SocialContextProvider = ({ children }) => {
   }, [BookMark]);
 
 
-  const handleAddBM = (BookMark, newBM) => {
+  const handleAddBM = (newBM) => {
     const newBMArray = addNewBM(BookMark, newBM) ; 
     setBookMark(newBMArray) ; 
   }

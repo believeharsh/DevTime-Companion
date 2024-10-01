@@ -12,8 +12,7 @@ const GetTasks = () => {
   const { handleAddTask: handleAddTodayTask } = useTodayTask();
   const { handleAddTask: handleAddImportantTask } = useImpTask();
   const { handleAddTask: handleAddMissingTask } = useMissingTask();
-  const route = location.pathname.split("/")[2]; // Assuming route format: /bookmarks/codingbm, /bookmarks/socialbm, etc.
-
+  const route = location.pathname.split("/")[2]; 
   const getAddTaskFunction = (route) => {
     switch (route) {
       case "important":

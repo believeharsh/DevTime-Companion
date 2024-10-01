@@ -6,10 +6,15 @@ import EditBookmark from "./EditBM";
 import EditingPannel from "./EditingPannel";
 import './Bookmarks.css'; // Import the CSS file
 
-const Bmlist = () => {
+const Bmlist = ({
+  handleAddBM,
+  handleEditBM,
+  handleDeleteBM,
+  BookMark
+}) => {
   const [editBM, setEditBM] = useState(null); // Track the bookmark being edited
   const [panelOpenId, setPanelOpenId] = useState(null);
-  const { handleEditBM, handleDeleteBM, BookMark } = useBM();
+
 
   const panelRef = useRef({});
   const buttonRef = useRef({});

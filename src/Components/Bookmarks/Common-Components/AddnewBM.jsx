@@ -2,10 +2,6 @@ import React, { useContext, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
 import './Bookmarks.css'; 
-import { useLocation } from "react-router-dom";
-import { SocialContext } from "../../../Context/BookMark-Context/Social-Context/SocialContext";
-import { ToolsContext } from "../../../Context/BookMark-Context/Tools-Context/ToolsContext";
-import { CodingContext } from "../../../Context/BookMark-Context/Coding-Context/CodingContext";
 
 const AddnewBM = ({handleAddBM}) => {
 
