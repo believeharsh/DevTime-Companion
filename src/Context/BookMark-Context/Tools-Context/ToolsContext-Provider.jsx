@@ -1,7 +1,8 @@
-import { BMContext } from "./BMContext";
+
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState, useContext } from "react";
-import { addNewBM, deleteBM, editBM } from "../../Utils/BookMarkUtils";
+import { addNewBM, deleteBM, editBM } from "../../../Utils/BookMarkUtils";
+import { ToolsContext } from "./ToolsContext";
 
 const InitialBM = [
   {
@@ -14,9 +15,9 @@ const InitialBM = [
   { id: uuidv4(), text: "Youtube", url: "https://www.youtube.com/" },
 ];
 
-const LOCAL_STORAGE_KEY = "bookmarks";
+const LOCAL_STORAGE_KEY = "ToolsBM";
 
-const BMContextProvider = ({ children }) => {
+const ToolsContextProvider = ({ children }) => {
   const [BookMark, setBookMark] = useState(() => {
     try {
       const SavedBMs = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -53,15 +54,15 @@ const BMContextProvider = ({ children }) => {
   };
 
   return (
-    <BMContext.Provider value={{ BookMark, handleAddBM, handleEditBM, handleDeleteBM }}>
+    <ToolsContext.Provider value={{ BookMark, handleAddBM, handleEditBM, handleDeleteBM }}>
     {children}
-  </BMContext.Provider>
+  </ToolsContext.Provider>
   );
 };
 
-export default BMContextProvider;
+export default ToolsContextProvider;
 
-export const useBM = () => {
-  const { handleAddBM, handleEditBM, handleDeleteBM, BookMark} = useContext(BMContext);
+export const UseToolsBM = () => {
+  const { handleAddBM, handleEditBM, handleDeleteBM, BookMark} = useContext(ToolsContext);
   return { handleAddBM, handleEditBM, handleDeleteBM, BookMark };
 };

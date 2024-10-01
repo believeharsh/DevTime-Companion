@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 import AddNewTask from "../Tasks/AddNewTask";
 import Header from "../Header/Header";
 import Navbar from "../Navbar/Navbar";
@@ -8,9 +8,11 @@ import { useMissingTask } from "../../../Context/Todo-Context/MissingTasks/Missi
 import { useImpTask } from "../../../Context/Todo-Context/ImportantTasks/ImpTaskProvider";
 
 const GetTasks = () => {
+  const location = useLocation();
   const { handleAddTask: handleAddTodayTask } = useTodayTask();
   const { handleAddTask: handleAddImportantTask } = useImpTask();
   const { handleAddTask: handleAddMissingTask } = useMissingTask();
+  const route = location.pathname.split("/")[2]; // Assuming route format: /bookmarks/codingbm, /bookmarks/socialbm, etc.
 
   const getAddTaskFunction = (route) => {
     switch (route) {
@@ -30,9 +32,9 @@ const GetTasks = () => {
       <div className="max-w-md mx-auto p-4">
         <div className="everything-card border-1 rounded-xl px-2 py-2">
           <Header />
-          {/* AddNewTask component should still be rendered at the top */}
-          <AddNewTask handleAddTask={getAddTaskFunction("today")} />
-          {/* This will render the nested routes */}
+
+          <AddNewTask handleAddTask={getAddTaskFunction()} />
+
           <Outlet />
         </div>
       </div>

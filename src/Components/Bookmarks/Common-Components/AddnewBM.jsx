@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import { useBM } from "../../Context/BookMark-Context/BMContext-Provider";
 import { v4 as uuidv4 } from "uuid";
-import './Bookmarks.css'; // Import the CSS file
+import './Bookmarks.css'; 
+import { useLocation } from "react-router-dom";
+import { SocialContext } from "../../../Context/BookMark-Context/Social-Context/SocialContext";
+import { ToolsContext } from "../../../Context/BookMark-Context/Tools-Context/ToolsContext";
+import { CodingContext } from "../../../Context/BookMark-Context/Coding-Context/CodingContext";
 
-const AddnewBM = () => {
-  const { handleAddBM, BookMark } = useBM();
+const AddnewBM = ({handleAddBM}) => {
+
   const [bookmarkText, setBookmarkText] = useState("");
   const [bookmarkUrl, setBookmarkUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddBM(BookMark, {
+    const newBM = {
       id: uuidv4(),
       text: bookmarkText,
-      url: bookmarkUrl,
-    });
+      url: bookmarkUrl, 
+    }
+    handleAddBM(newBM);
 
     setBookmarkText("");
     setBookmarkUrl("");

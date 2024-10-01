@@ -6,7 +6,11 @@ import Spinner from "./Components/General/Spinner";
 
 // Lazy-loaded components
 const GetTasks = lazy(() => import("./Components/TodoPages/AllTasks/GetTasks"));
-const AllBs = lazy(() => import("./Components/Bookmarks/AllBMs"));
+const GetBM = lazy(() => import("./Components/Bookmarks/Common-Components/GetBM.jsx"));
+const SocialBM = lazy(() => import("./Components/Bookmarks/BM-Pages/SocialsBM"));
+const CodingBM = lazy(() => import("./Components/Bookmarks/BM-Pages/CodingBM"));
+const ToolsBM = lazy(() => import("./Components/Bookmarks/BM-Pages/ToolsBM"));
+
 const TodayTasklist = lazy(() =>
   import("./Components/TodoPages/Tasks/TodayTasklist")
 );
@@ -57,7 +61,12 @@ function App() {
                 <Route path="important" element={<ImpTasklist />} />
                 <Route path="missing" element={<MissingTasklist />} />
               </Route>
-              <Route path="bookmarks" element={<AllBs />} />
+              <Route path="bookmarks" element={<GetBM/>}>
+                <Route path="Codingbm" element={<CodingBM/>} />
+                <Route path="socialbm" element={<SocialBM/>} />
+                <Route path="toolsbm" element={<ToolsBM/>} />
+              </Route>
+              {/* <Route path="bookmarks" element={<AllBs />} /> */}
               <Route path="reminder" element={<Reminder />} />
               <Route path="watch" element={<Watch />} />
               <Route path="settings" element={<Settings />} />
