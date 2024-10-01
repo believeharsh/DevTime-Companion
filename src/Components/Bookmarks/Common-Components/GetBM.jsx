@@ -3,14 +3,14 @@ import AddnewBM from "./AddnewBM";
 import { UseSocialBM } from "../../../Context/BookMark-Context/Social-Context/SocialContext-Provider";
 import { UseToolsBM } from "../../../Context/BookMark-Context/Tools-Context/ToolsContext-Provider";
 import "../Common-Components/Bookmarks.css";
-import { Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { UseCodingBM } from "../../../Context/BookMark-Context/Coding-Context/CodingContext-Provider";
 import  Header  from "./Header";
 
 
 const GetBM = () => {
-  const Location = useLocation();
-  const path = Location.pathname.split("/").pop();
+  const location = useLocation();
+  const path = location.pathname.split("/").pop();
   const { handleAddBM: handleAddCodingBM } = UseCodingBM();
   const { handleAddBM: handleAddSocialBM } = UseSocialBM();
   const { handleAddBM: handleAddToolsBM } = UseToolsBM();
@@ -26,6 +26,11 @@ const GetBM = () => {
         return handleAddToolsBM;
     }
   };
+
+  // Redirect to "/bookmarks/Codingbm" if the path is exactly "/bookmarks"
+  if (location.pathname === "/bookmarks") {
+    return <Navigate to="/bookmarks/Codingbm" />;
+  }
   return (
     <>
       <div className="">

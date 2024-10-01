@@ -122,7 +122,7 @@ const TaskList = ({
                      
                           className="threedot-panel"
                         >
-                        {console.log(buttonRefs.current[task.id])}
+                  
                           <button
                             className="threedot-panel-btns"
                             onClick={() => openEditPanel(task.id)}

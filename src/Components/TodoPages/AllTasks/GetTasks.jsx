@@ -12,9 +12,9 @@ const GetTasks = () => {
   const { handleAddTask: handleAddTodayTask } = useTodayTask();
   const { handleAddTask: handleAddImportantTask } = useImpTask();
   const { handleAddTask: handleAddMissingTask } = useMissingTask();
-  const route = location.pathname.split("/")[2]; 
-  const getAddTaskFunction = (route) => {
-    switch (route) {
+  const path = location.pathname.split("/").pop();
+  const getAddTaskFunction = () => {
+    switch (path) {
       case "important":
         return handleAddImportantTask;
       case "missing":
