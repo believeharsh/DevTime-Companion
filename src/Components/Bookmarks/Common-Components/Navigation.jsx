@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './Bookmarks.css'; // Import the CSS file
+import Header from "../../Pages/Header/Header";
 
-const  Header = () => {
+const  Navigation = () => {
   return (
     <>
       <div className="px-8 py-1 font-libre text-white ">
         <div className="flex justify-between item-center text-xl">
           <div className="text-2xl  px-3 py-1 rounded-xl">
-            <p>BookMarks.In</p>
+            <Header/>
           </div>
           <div className="flex justify-center items-center space-x-5 text-xl ">
             <Link className="Navbar-BTN" to='socialbm'>
@@ -27,4 +28,4 @@ const  Header = () => {
   );
 }
 
-export default Header;
+export default Navigation;

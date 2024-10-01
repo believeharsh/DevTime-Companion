@@ -5,7 +5,7 @@ import { UseToolsBM } from "../../../Context/BookMark-Context/Tools-Context/Tool
 import "../Common-Components/Bookmarks.css";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { UseCodingBM } from "../../../Context/BookMark-Context/Coding-Context/CodingContext-Provider";
-import  Header  from "./Header";
+import Navigation from "./Navigation";
 
 
 const GetBM = () => {
@@ -34,7 +34,7 @@ const GetBM = () => {
   return (
     <>
       <div className="">
-        <Header />
+        <Navigation/>
       </div>
       <div className="AllBMs-container">
         <div className="AllBMs-wrapper">

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "../../Pages/Header/Header";
 
 
 const Navbar = () => {
@@ -15,7 +16,7 @@ const Navbar = () => {
               className="flex-none text-xl font-semibold dark:text-white"
               href="#"
             >
-              To Do React
+             <Header/>
             </a>
             {/* // for small screens  */}
             {/* <div className="sm:hidden">

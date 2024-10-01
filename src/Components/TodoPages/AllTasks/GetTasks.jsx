@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import AddNewTask from "../Tasks/AddNewTask";
 import Header from "../Header/Header";
 import Navbar from "../Navbar/Navbar";
@@ -7,11 +7,13 @@ import { useTodayTask } from "../../../Context/Todo-Context/TodayTasks/TodayTask
 import { useMissingTask } from "../../../Context/Todo-Context/MissingTasks/MissingTaskProvider";
 import { useImpTask } from "../../../Context/Todo-Context/ImportantTasks/ImpTaskProvider";
 
+
 const GetTasks = () => {
   const location = useLocation();
   const { handleAddTask: handleAddTodayTask } = useTodayTask();
   const { handleAddTask: handleAddImportantTask } = useImpTask();
   const { handleAddTask: handleAddMissingTask } = useMissingTask();
+
   const path = location.pathname.split("/").pop();
   const getAddTaskFunction = () => {
     switch (path) {
@@ -24,6 +26,10 @@ const GetTasks = () => {
         return handleAddTodayTask;
     }
   };
+
+  if (location.pathname === "/tasks") {
+    return <Navigate to="/tasks/today" />;
+  }
 
   return (
     <div className="left-0 right-0 bottom-0 top-0 overflow-auto">

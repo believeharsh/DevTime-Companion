@@ -2,10 +2,14 @@ import { useLocation } from "react-router-dom";
 
 const usePageMetadata = () => {
   const location = useLocation();
+  if (location.pathname.startsWith("/tasks")) {
+    return { title: "Your Tasks" };
+  }
+  if (location.pathname.startsWith("/bookmarks")) {
+    return { title: "Your BookMarks" };
+  }
 
   switch (location.pathname) {
-    case "/tasks":
-      return { title: "Your To Do Tasks" };
     case "/bookmarks":
       return { title: "Your Bookmarks" };
     case "/dashboard":
