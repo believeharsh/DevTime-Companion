@@ -1,5 +1,6 @@
 export const addNewBM = (BookMark , newBM) => {
 
+
   const newBookMark = {
     id: newBM.id,
     text: newBM.text,

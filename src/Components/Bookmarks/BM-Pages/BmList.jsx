@@ -1,15 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useBM } from "../../Context/BookMark-Context/BMContext-Provider";
-import CommonBM from "./CommonBM";
-import EditBookmark from "./EditBM";
-import EditingPannel from "./EditingPannel";
-import './Bookmarks.css'; // Import the CSS file
+import CommonBM from "../Common-Components/CommonBM";
+import EditBookmark from "../Common-Components/EditBM";
+import EditingPannel from "../Common-Components/EditingPannel";
+import '../../Bookmarks/Common-Components/Bookmarks.css'; 
 
-const Bmlist = () => {
-  const [editBM, setEditBM] = useState(null); // Track the bookmark being edited
+const Bmlist = ({
+    handleEditBM, 
+    handleDeleteBM, 
+    BookMark
+}) => {
+  const [editBM, setEditBM] = useState(null); 
   const [panelOpenId, setPanelOpenId] = useState(null);
-  const { handleEditBM, handleDeleteBM, BookMark } = useBM();
+
 
   const panelRef = useRef({});
   const buttonRef = useRef({});

@@ -1,7 +1,8 @@
-import { BMContext } from "./BMContext";
+
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState, useContext } from "react";
-import { addNewBM, deleteBM, editBM } from "../../Utils/BookMarkUtils";
+import { addNewBM, deleteBM, editBM } from "../../../Utils/BookMarkUtils";
+import { SocialContext } from "./SocialContext";
 
 const InitialBM = [
   {
@@ -14,9 +15,9 @@ const InitialBM = [
   { id: uuidv4(), text: "Youtube", url: "https://www.youtube.com/" },
 ];
 
-const LOCAL_STORAGE_KEY = "bookmarks";
+const LOCAL_STORAGE_KEY = "SocialBM";
 
-const BMContextProvider = ({ children }) => {
+const SocialContextProvider = ({ children }) => {
   const [BookMark, setBookMark] = useState(() => {
     try {
       const SavedBMs = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -32,7 +33,7 @@ const BMContextProvider = ({ children }) => {
   }, [BookMark]);
 
 
-  const handleAddBM = (BookMark, newBM) => {
+  const handleAddBM = (newBM) => {
     const newBMArray = addNewBM(BookMark, newBM) ; 
     setBookMark(newBMArray) ; 
   }
@@ -53,15 +54,15 @@ const BMContextProvider = ({ children }) => {
   };
 
   return (
-    <BMContext.Provider value={{ BookMark, handleAddBM, handleEditBM, handleDeleteBM }}>
+    <SocialContext.Provider value={{ BookMark, handleAddBM, handleEditBM, handleDeleteBM }}>
     {children}
-  </BMContext.Provider>
+  </SocialContext.Provider>
   );
 };
 
-export default BMContextProvider;
+export default SocialContextProvider;
 
-export const useBM = () => {
-  const { handleAddBM, handleEditBM, handleDeleteBM, BookMark} = useContext(BMContext);
+export const UseSocialBM = () => {
+  const { handleAddBM, handleEditBM, handleDeleteBM, BookMark} = useContext(SocialContext);
   return { handleAddBM, handleEditBM, handleDeleteBM, BookMark };
 };

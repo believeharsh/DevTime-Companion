@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './Bookmarks.css'; // Import the CSS file
 
-function Header() {
+const  Header = () => {
   return (
     <>
       <div className="px-8 py-1 font-libre text-white ">
@@ -11,13 +11,13 @@ function Header() {
             <p>BookMarks.In</p>
           </div>
           <div className="flex justify-center items-center space-x-5 text-xl ">
-            <Link className="Navbar-BTN" to='social'>
+            <Link className="Navbar-BTN" to='socialbm'>
               Social
             </Link>
-            <Link className="Navbar-BTN" to='coding'>
+            <Link className="Navbar-BTN" to='codingbm'>
               Coding
             </Link>
-            <Link className="Navbar-BTN" to='tools'>
+            <Link className="Navbar-BTN" to='toolsbm'>
               Tools
             </Link>
           </div>

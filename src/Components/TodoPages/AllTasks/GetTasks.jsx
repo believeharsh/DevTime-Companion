@@ -8,12 +8,11 @@ import { useMissingTask } from "../../../Context/Todo-Context/MissingTasks/Missi
 import { useImpTask } from "../../../Context/Todo-Context/ImportantTasks/ImpTaskProvider";
 
 const GetTasks = () => {
+  const location = useLocation();
   const { handleAddTask: handleAddTodayTask } = useTodayTask();
   const { handleAddTask: handleAddImportantTask } = useImpTask();
   const { handleAddTask: handleAddMissingTask } = useMissingTask();
-
-  const location = useLocation();
-  const path = location.pathname.split("/").pop(); // Extract the last part of the path
+  const path = location.pathname.split("/").pop();
   const getAddTaskFunction = () => {
     switch (path) {
       case "important":
@@ -34,7 +33,7 @@ const GetTasks = () => {
           <Header />
 
           <AddNewTask handleAddTask={getAddTaskFunction()} />
-        
+
           <Outlet />
         </div>
       </div>
