@@ -6,7 +6,7 @@ import Navbar from "../Navbar/Navbar";
 import { useTodayTask } from "../../../Context/Todo-Context/TodayTasks/TodayTaskProvider";
 import { useMissingTask } from "../../../Context/Todo-Context/MissingTasks/MissingTaskProvider";
 import { useImpTask } from "../../../Context/Todo-Context/ImportantTasks/ImpTaskProvider";
-
+import "./AllTasks.css"
 
 const GetTasks = () => {
   const location = useLocation();

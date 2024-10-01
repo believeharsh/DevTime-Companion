@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import { CiEdit, CiMedicalCross } from "react-icons/ci";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import "./Tasks.css"
 
 const TaskList = ({
   tasks,

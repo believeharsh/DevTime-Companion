@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useState } from "react";
-
 import { FaPlus } from "react-icons/fa";
+import "./Tasks.css"
 
 const AddNewTask = ({handleAddTask}) => {
   const [inputValue, setinputValue] = useState("");
