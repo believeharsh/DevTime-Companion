@@ -10,7 +10,7 @@ const AppContainer = () => {
 
       <div className="ml-[15%] flex flex-col w-[85%] h-full">
     
-        <div className="flex-1 px-3">
+        <div className="flex-1 p-3">
  
           <Outlet />
         </div>
