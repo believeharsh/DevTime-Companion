@@ -6,8 +6,8 @@ import Header from "../../Pages/Header/Header";
 const  Navigation = () => {
   return (
     <>
-      <div className="px-8 py-1 font-libre text-white border-b-[1px] border-white">
-        <div className="flex justify-between item-center text-xl">
+      <div className="px-8 py-1 font-libre text-white border-b-[0.6px] border-white bo">
+        <div className="flex justify-between item-center text-base font-thin">
           <div className="text-2xl  px-3 py-1 rounded-xl">
             <Header/>
           </div>

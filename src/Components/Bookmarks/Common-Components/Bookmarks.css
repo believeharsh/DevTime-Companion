@@ -42,7 +42,7 @@
 
 /* Wrapper for centering content */
 .AllBMs-wrapper {
-  @apply max-w-md mx-auto p-4;
+  @apply max-w-3xl mx-auto p-4;
 }
 
 /* Card style for containing everything */
@@ -165,4 +165,18 @@
   /* Button styles for the editing and delete actions */
   .editing-panel-button {
     @apply block px-4 py-1 text-sm w-full text-left hover:bg-gray-700;
+  }
+
+
+  /* Navbar styling  */
+  .Navbar-btns-div {
+    @apply flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5;
+  }
+  
+  .navbar-buttons {
+    @apply text-white bg-gray-700 px-3 active:bg-gray-900 cursor-pointer py-1  rounded-xl  font-thin;
+    background: transparent;
+    border: white 1px solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5),
+      0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5);
   }

@@ -4,12 +4,12 @@ import BookMark from "./Bookmarks";
 import { IoUnlink } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Activity from "./Activity"
-import Calender from "./Calender"
+
 
 const DashBoard = () => {
   return (
     <>
-      <div className="flex h-full space-x-2">
+      <div className="flex h-full space-x-2 overflow-y-auto overflow-x-hidden">
         <div className="w-[50%] flex flex-col space-y-2">
           <div className="bg-neutral-800 w-full h-[45%] p-2 rounded-lg shadow-md">
             <div className="flex w-full mb-2 justify-between">
@@ -21,7 +21,7 @@ const DashBoard = () => {
           </div>
           <div className="bg-neutral-800 w-full h-[55%] p-2 rounded-lg shadow-md">
             <h3 className="text-xl font-sans mb-2">Tracker</h3>
-            <Calender/>
+            {/* <Calender/> */}
           </div>
         </div>
 
@@ -30,7 +30,7 @@ const DashBoard = () => {
             <div className="flex w-full mb-2  justify-between">
               <h3 className="text-xl font-sans">Tasks</h3>
 
-              <Link to="">
+              <Link to="tasks/today">
                 <IoUnlink className="text-white text-2xl cursor-pointer" />
               </Link>
             </div>
@@ -41,7 +41,7 @@ const DashBoard = () => {
           <div className="flex w-full mb-2  justify-between">
               <h3 className="text-xl font-sans">BookMarks</h3>
 
-              <Link to="">
+              <Link to="bookmarks/codingbm">
                 <IoUnlink className="text-white text-2xl cursor-pointer" />
               </Link>
             </div>

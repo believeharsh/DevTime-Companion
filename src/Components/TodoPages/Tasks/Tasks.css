@@ -9,7 +9,7 @@
   }
   
   .navbar-buttons {
-    @apply text-white bg-gray-700 px-3 active:bg-gray-900 cursor-pointer py-1 rounded-xl  font-thin;
+    @apply text-white bg-gray-700 px-3 active:bg-gray-900 cursor-pointer py-1 rounded-xl font-thin;
     background: transparent;
     border: white 1px solid;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.5),

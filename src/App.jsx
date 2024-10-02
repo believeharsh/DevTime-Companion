@@ -40,7 +40,7 @@ function App() {
     <Router>
       <MainContextProvider>
         <Suspense fallback={<Spinner />}>
-          {" "}
+          
           <Routes>
             {/* Home route with nested routes */}
             <Route path="/login" element={<Login />} />
@@ -66,14 +66,11 @@ function App() {
                 <Route path="socialbm" element={<SocialBM/>} />
                 <Route path="toolsbm" element={<ToolsBM/>} />
               </Route>
-              {/* <Route path="bookmarks" element={<AllBs />} /> */}
+              
               <Route path="reminder" element={<Reminder />} />
               <Route path="watch" element={<Watch />} />
               <Route path="settings" element={<Settings />} />
             </Route>
-
-            {/* Fallback route */}
-            {/* <Route path="*" element={<Homepage />} /> */}
           </Routes>
         </Suspense>
       </MainContextProvider>

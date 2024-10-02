@@ -8,7 +8,7 @@ const AppContainer = () => {
     <div className="flex h-screen w-screen overflow-hidden text-white">
       <Sidebar />
 
-      <div className="ml-[15%] flex flex-col w-[85%] h-full">
+      <div className="ml-[15%] flex flex-col w-[85%] overflow-auto">
     
         <div className="flex-1 p-3">
  

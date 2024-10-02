@@ -1,21 +1,24 @@
 import React from "react";
-import './Bookmarks.css'; // Import the CSS file
+import "./Bookmarks.css"; // Import the CSS file
 
 const CommonBM = ({ BM }) => {
   // Construct the favicon URL
-  const faviconUrl = `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${BM.url}`;
+  // const faviconUrl = `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${BM.url}`;
+  const faviconUrl = `https://www.google.com/s2/favicons?domain=${BM.url}`;
+
 
   return (
     <div className="commonBM-container">
       <div className="commonBM-favicon-container">
         <a href={BM.url} target="_blank" rel="noopener noreferrer">
+         
           <img
             className="commonBM-favicon-image"
             src={faviconUrl}
             alt={`Favicon for ${BM.text}`}
             onError={(e) => {
               e.target.onerror = null; // Prevent infinite loop
-              e.target.src = 'https://via.placeholder.com/32'; // Fallback image
+              e.target.src = "https://via.placeholder.com/32"; // Fallback image
             }}
           />
         </a>

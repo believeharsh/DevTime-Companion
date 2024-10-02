@@ -16,14 +16,14 @@ const Header = () => {
     // Check full pathnames here :: 
     switch (location.pathname) {
       case "/tasks/important":
-        settasktype("Important");
+        settasktype("Important Tasks");
         break;
       case "/tasks/missing":
-        settasktype("Missing");
+        settasktype("Missing Tasks");
         break;
       case "/tasks/today":
       default:
-        settasktype("Today");
+        settasktype("Today Tasks");
         break;
     }
   }, [location.pathname]);
